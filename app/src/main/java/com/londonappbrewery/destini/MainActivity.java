@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
             mtopButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    buttonPressed(1);
                 }
             });
 
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         mBottomButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                    buttonPressed(2);
             }
         });
 
@@ -60,11 +60,50 @@ public class MainActivity extends AppCompatActivity {
     {
         if(x==1)
         {
+            if(questionNumber==0)
+            {
+                questionNumber=2;
+                setTexts();
 
+            }
+            else if(questionNumber==1)
+            {
+                questionNumber=2;
+                setTexts();
+            }
+            else if(questionNumber==2)
+            {
+                mTextView.setText(R.string.T6_End);
+                mtopButton.setVisibility(View.GONE);
+                mBottomButton.setVisibility(View.GONE);
+            }
         }
         if(x==2)
         {
+            if(questionNumber==0)
+            {
+                questionNumber=1;
+                setTexts();
+            }
+            else if(questionNumber==1)
+            {
+                mTextView.setText(R.string.T4_End);
+                mtopButton.setText("");
+                mBottomButton.setText("");
+            }
+            else if(questionNumber==2)
+            {
+                mTextView.setText(R.string.T5_End);
 
+                mBottomButton.setVisibility(View.GONE);
+                mtopButton.setVisibility(View.GONE);
+            }
         }
+    }
+    private void setTexts()
+    {
+        mTextView.setText(mStory[questionNumber].getStoryText());
+        mtopButton.setText(mStory[questionNumber].getButton1());
+        mBottomButton.setText(mStory[questionNumber].getButton2());
     }
 }
